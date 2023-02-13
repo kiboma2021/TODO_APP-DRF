@@ -26,7 +26,7 @@ def TaskAPI(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def TaskDetails(request,id):
     try:
-        get_task=Task.objects.get(id=id)
+        get_task=Task.objects.get(pk=id)
     except Task.DoesNotExist:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
