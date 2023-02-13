@@ -16,3 +16,10 @@ def TaskAPI(request):
     if request.method == 'GET':
         serialized_data = TaskSerializer(tasks, many=True)
         return Response(serialized_data.data, status=status.HTTP_200_OK)
+
+    elif request.method == 'POST':
+        serialized_data=TaskSerializer(data=request.GET)
+        if serialized_data.is_valid():
+            serialized_data.save()
+            return Response(serialized_data.data, status=status.HTTP_201_CREATED)
+            
