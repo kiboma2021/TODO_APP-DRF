@@ -22,4 +22,17 @@ def TaskAPI(request):
         if serialized_data.is_valid():
             serialized_data.save()
             return Response(serialized_data.data, status=status.HTTP_201_CREATED)
-            
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def TaskDetails(request,id):
+    try:
+        get_task=Task.objects.get(id=id)
+    except Task.DoesNotExist:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'GET':
+        pass
+    elif request.method == 'PUT':
+        pass
+    elif request.method == 'DELETE':
+        pass
