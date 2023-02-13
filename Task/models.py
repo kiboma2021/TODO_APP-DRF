@@ -6,5 +6,5 @@ class Task(models.Model):
     name=models.CharField(max_length=50)
     description=models.CharField(max_length=200)
 
-    def __init__(self):
+    def __str__(self):
         return self.name
