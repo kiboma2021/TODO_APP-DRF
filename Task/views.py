@@ -31,8 +31,13 @@ def TaskDetails(request,id):
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
     if request.method == 'GET':
-        pass
+        serialized_data=TaskSerializer(get_task)
+        return Response(serialized_data.data, status=status.HTTP_200_OK)
     elif request.method == 'PUT':
-        pass
+        serialized_data=TaskSerializer(get_task, data=request.GET)
+        if serialized_data.is_valid():
+            serialized_data.save()
+            return Response(serialized_data.data, status=status.HTTP_200_OK)
     elif request.method == 'DELETE':
-        pass
+        get_task.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
